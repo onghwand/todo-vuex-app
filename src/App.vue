@@ -10,6 +10,7 @@
       <div class="d-flex justify-content-between">
         <p>남은 할일: {{uncompletedTodosCount}}</p>
         <div>
+          <button type="button" class="btn btn-secondary me-3" @click="deleteCompleted">완료된 일 삭제</button>
           <button type="button" class="btn btn-secondary me-3" @click="deleteChecked">선택 삭제</button> 
           <button type="button" class="btn btn-secondary" @click="clearAll">전체 삭제</button>  
         </div>
@@ -35,6 +36,7 @@ export default {
     ...mapActions([
       'clearAll',
       'deleteChecked',
+      'deleteCompleted'
     ])
     // loadPic(){
     //   const URL='https://api.unsplash.com/photos/random'

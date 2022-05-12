@@ -69,6 +69,11 @@ export default new Vuex.Store({
       //     const index = state.todos.indexOf(todo)
       //     state.todos.splice(index, 1)
       // })
+    },
+    DELETE_COMPLETED(state) {
+      state.todos = state.todos.filter(todo => {
+        return !todo.isCompleted 
+      })
     }
   },
   actions: {
@@ -89,6 +94,9 @@ export default new Vuex.Store({
     },
     deleteChecked({ commit }) {
       commit('DELETE_CHECKED')
+    },
+    deleteCompleted({ commit }) {
+      commit('DELETE_COMPLETED')
     }
   },
   modules: {
