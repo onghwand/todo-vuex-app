@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="background zindex-dropdown d-flex justify-content-center" >
     <!-- <img :src="loadPic" alt="background img"> -->
-    <div class="container bg-light zindex-sticky position-absolute mt-5 p-3">
+    <div class="">
+      <p class="text-white mt-5 fs-1">{{`${month}월 ${date}일  ${hours}:${minutes}:${seconds}`}}</p> 
+    </div>
+    <div class="container bg-light zindex-sticky position-absolute p-3 margin">
       <h1 class="mb-3">TO DO LIST</h1>
       <todo-form></todo-form>
       <todo-list></todo-list>
@@ -32,12 +35,30 @@ export default {
     TodoList,
     TodoForm
   },
+  data() {
+    return {
+      month: '',
+      date: '',
+      hours: '',
+      minutes: '',
+      seconds: '',
+      //time: '',
+    }
+  },
   methods: {
     ...mapActions([
       'clearAll',
       'deleteChecked',
       'deleteCompleted'
-    ])
+    ]),
+    getTime() {
+      this.month = new Date().getMonth()
+      this.date = new Date().getDate()
+      this.hours = new Date().getHours() < 10 ? `0${new Date().getHours()}`: new Date().getHours()
+      this.minutes = new Date().getMinutes() < 10 ? `0${new Date().getMinutes()}`: new Date().getMinutes()
+      this.seconds = new Date().getSeconds() < 10 ? `0${new Date().getSeconds()}`: new Date().getSeconds()
+      //this.time =  `${this.seconds < 10? `0${this.seconds}` : this.seconds}`
+    }
     // loadPic(){
     //   const URL='https://api.unsplash.com/photos/random'
     //   axios.get(URL)
@@ -54,6 +75,12 @@ export default {
       'uncompletedTodosCount',
       'totalTodosCount',
     ])
+  },
+  // created() {
+  //   let date = new Date()
+  // }
+  created() {
+    this.loading = setInterval(this.getTime, 1000);
   }
 }
 </script>
@@ -76,6 +103,10 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   /* z-index: -1; */
+}
+
+.margin {
+  margin-top: 8rem !important;
 }
 
 </style>
