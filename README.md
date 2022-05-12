@@ -1,5 +1,7 @@
 # TodoList custom
 
+https://onghwand.netlify.app/
+
 ### 0. bootstrap 이용법
 
 - [bootstrap 설치](https://velog.io/@gillog/Vue.js-Bootstrap-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
